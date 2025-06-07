@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html class="flex justify-center">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="/src/style.css" rel="stylesheet" />
+    <title>Les petits plats</title>
+  </head>
+
+  <body class="font-secondary w-360 h-full">
+    <header
+      class="header relative flex flex-col text-white bg-black align-middle"
+    >
+      <img
+        src="/src/assets/lespetitsplats-background-image.jpg"
+        id="background-image"
+        class="absolute object-cover w-full h-167 opacity-75"
+      />
+
+      <div id="logo" class="absolute z-10 ml-14 mt-14">
+        <img
+          src="/src/assets/lespetitsplats-logo.png"
+          alt="logo Les petits plats"
+          class="h-6.5"
+        />
+      </div>
+
+      <div
+        id="header-searchbar"
+        class="relative z-10 flex flex-col items-center justify-center w-full h-167"
+      >
+        <p
+          class="font-primary text-yellow text-5xl/normal font-normal text-center uppercase"
+        >
+          Cherchez parmi plus de 1500 recettes<br />
+          du quotidien, simples et délicieuses
+        </p>
+
+        <div
+          class="searchbar flex flex-row items-center justify-between h-18 w-238.5 bg-white rounded-xl mt-8 p-3"
+        >
+          <input
+            type="text"
+            name="research"
+            placeholder="Rechercher une recette, un ingrédient..."
+            class="w-full text-lg text-grey outline-0"
+          />
+          <button
+            type="submit"
+            aria-label="Rechercher"
+            class="h-13 w-13 rounded-xl bg-black hover:bg-yellow cursor-pointer group"
+          >
+            <div class="icon icon-magnifying-glass rotate-45">
+              <div class="flex flex-row justify-center items-center">
+                <div
+                  class="flex w-5 h-5 rounded-full border-2 border-white group-hover:border-black"
+                ></div>
+                <div
+                  class="flex ml-0.5 w-3 h-0.5 rounded-r-full bg-white group-hover:bg-black"
+                ></div>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="bg-neutral-200 pt-6 pl-25 pr-25">
+      <div id="navbar" class="flex items-center justify-between">
+        <div class="filters-and-search flex flex-col">
+          <div id="recipe-search" class="flex flex-row">
+            <div
+              class="recipe-search_container recipe-search-ingredients group relative mr-18"
+              aria-expanded="false"
+            >
+              <!-- bouton du menu déroulant -->
+              <button
+                class="dropdown_btn cursor-pointer flex items-center justify-between w-45 h-14 p-4 bg-white rounded-xl"
+                aria-label="Recherche par ingrédients"
+              >
+                <p class="font-medium">Ingrédients</p>
+                <i
+                  class="fa-solid fa-chevron-down group-aria-[expanded=true]:rotate-180 transition"
+                ></i>
+              </button>
+              <!-- menu déroulant -->
+              <div
+                class="dropdown_menu hidden absolute top-full left-0 w-full z-20 pl-4 pr-4 justif-between rounded-b-xl bg-white shadow-md flex-col group-aria-[expanded=true]:flex"
+              >
+                <!-- recherche -->
+                <div
+                  class="search flex flex-row items-center rounded-xs h-9 p-2 bg-white outline-1 outline-light-grey"
+                >
+                  <input
+                    type="text"
+                    name="research"
+                    class="w-full text-sm text-grey outline-0 pt-2 pb-2"
+                  />
+                  <div
+                    class="icon icon-erase cursor-pointer hidden items-center w-4 h-4 ml-0.5 mr-1 relative"
+                  >
+                    <div
+                      class="absolute rotate-45 bg-grey h-px w-full rounded-full"
+                    ></div>
+                    <div
+                      class="absolute rotate-135 bg-grey h-px w-full rounded-full"
+                    ></div>
+                  </div>
+                  <button
+                    type="submit"
+                    aria-label="rechercher"
+                    class="search-button h-6 w-6 rounded-xl bg-white cursor-pointer"
+                  >
+                    <div class="icon icon-magnifying-glass rotate-45">
+                      <div class="flex flex-row justify-center items-center">
+                        <div
+                          class="flex w-3 h-3 rounded-full border border-grey"
+                        ></div>
+                        <div
+                          class="flex ml-0.5 w-2 h-px bg-grey rounded-r-full"
+                        ></div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+                <!-- historique -->
+                <div
+                  class="record flex flex-wrap mt-4 text-sm/8 h-full max-h-52 overflow-y-scroll"
+                >
+                  <p class="recipe-record flex w-full">
+                    jus de citron <br />
+                    glaçons<br />
+                    tomate <br />poulet <br />poivron rouge <br />thon en
+                    miettes <br />vinaigrette
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="recipe-search_container recipe-search-appliance group relative mr-18"
+              aria-expanded="false"
+            >
+              <!-- bouton du menu déroulant -->
+              <button
+                class="dropdown_btn cursor-pointer flex items-center justify-between w-45 h-14 p-4 bg-white rounded-xl"
+                aria-label="Recherche par appareil"
+              >
+                <p class="font-medium">Appareils</p>
+                <i
+                  class="fa-solid fa-chevron-down group-aria-[expanded=true]:rotate-180 transition"
+                ></i>
+              </button>
+              <!-- menu déroulant -->
+              <div
+                class="dropdown_menu hidden absolute top-full left-0 w-full z-20 pl-4 pr-4 justif-between rounded-b-xl bg-white shadow-md flex-col group-aria-[expanded=true]:flex"
+              >
+                <!-- recherche -->
+                <div
+                  class="search flex flex-row items-center rounded-xs h-9 p-2 bg-white outline-1 outline-light-grey"
+                >
+                  <input
+                    type="text"
+                    name="research"
+                    class="w-full text-sm text-grey outline-0 pt-2 pb-2"
+                  />
+                  <div
+                    class="icon icon-erase cursor-pointer hidden items-center w-4 h-4 ml-0.5 mr-1 relative"
+                  >
+                    <div
+                      class="absolute rotate-45 bg-grey h-px w-full rounded-full"
+                    ></div>
+                    <div
+                      class="absolute rotate-135 bg-grey h-px w-full rounded-full"
+                    ></div>
+                  </div>
+                  <button
+                    type="submit"
+                    aria-label="rechercher"
+                    class="search-button h-6 w-6 rounded-xl bg-white cursor-pointer"
+                  >
+                    <div class="icon icon-magnifying-glass rotate-45">
+                      <div class="flex flex-row justify-center items-center">
+                        <div
+                          class="flex w-3 h-3 rounded-full border border-grey"
+                        ></div>
+                        <div
+                          class="flex ml-0.5 w-2 h-px bg-grey rounded-r-full"
+                        ></div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+                <!-- historique -->
+                <div
+                  class="record flex flex-wrap mt-4 text-sm/8 h-full max-h-52 overflow-y-scroll group"
+                >
+                  <p class="recipe-record flex w-full">
+                    jus de citron <br />
+                    glaçons<br />
+                    tomate <br />poulet <br />poivron rouge <br />thon en
+                    miettes <br />vinaigrette
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="recipe-search_container recipe-search-ustensils group relative mr-18"
+              aria-expanded="false"
+            >
+              <!-- bouton du menu déroulant -->
+              <button
+                class="dropdown_btn cursor-pointer flex items-center justify-between w-45 h-14 p-4 bg-white rounded-xl"
+                aria-label="Recherche par ustensile"
+              >
+                <p class="font-medium">Ustensiles</p>
+                <i
+                  class="fa-solid fa-chevron-down group-aria-[expanded=true]:rotate-180 transition"
+                ></i>
+              </button>
+              <!-- menu déroulant -->
+              <div
+                class="dropdown_menu hidden absolute top-full left-0 w-full z-20 pl-4 pr-4 justif-between rounded-b-xl bg-white shadow-md flex-col group-aria-[expanded=true]:flex"
+              >
+                <!-- recherche -->
+                <div
+                  class="search flex flex-row items-center rounded-xs h-9 p-2 bg-white outline-1 outline-light-grey"
+                >
+                  <input
+                    type="text"
+                    name="research"
+                    class="w-full text-sm text-grey outline-0 pt-2 pb-2"
+                  />
+                  <div
+                    class="icon icon-erase cursor-pointer hidden items-center w-4 h-4 ml-0.5 mr-1 relative"
+                  >
+                    <div
+                      class="absolute rotate-45 bg-grey h-px w-full rounded-full"
+                    ></div>
+                    <div
+                      class="absolute rotate-135 bg-grey h-px w-full rounded-full"
+                    ></div>
+                  </div>
+                  <button
+                    type="submit"
+                    aria-label="rechercher"
+                    class="search-button h-6 w-6 rounded-xl bg-white cursor-pointer"
+                  >
+                    <div class="icon icon-magnifying-glass rotate-45">
+                      <div class="flex flex-row justify-center items-center">
+                        <div
+                          class="flex w-3 h-3 rounded-full border border-grey"
+                        ></div>
+                        <div
+                          class="flex ml-0.5 w-2 h-px bg-grey rounded-r-full"
+                        ></div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+                <!-- historique -->
+                <div
+                  class="record flex flex-wrap mt-4 text-sm/8 h-full max-h-52 overflow-y-scroll"
+                >
+                  <p class="recipe-record flex w-full">
+                    jus de citron <br />
+                    glaçons<br />
+                    tomate <br />poulet <br />poivron rouge <br />thon en
+                    miettes <br />vinaigrette
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="recipe-filters mt-4 mb-4 flex-row items-center justify-between"
+          >
+            <div
+              class="filter flex mr-4 h-14 p-4 bg-yellow rounded-xl items-center"
+            >
+              <p class="filter-text flex">Exemple de filtre</p>
+              <div
+                class="icon icon-erase flex cursor-pointer items-center w-5 h-5 pl-2 relative"
+              >
+                <div
+                  class="absolute rotate-45 bg-black h-0.5 w-full rounded-full"
+                ></div>
+                <div
+                  class="absolute rotate-135 bg-black h-0.5 w-full rounded-full"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p>1500 recettes</p>
+        </div>
+      </div>
+      <!-- affichage dynamique des encarts des recettes -->
+      <div class="recipe-gallery grid grid-cols-3 mt-5 gap-12"></div>
+    </main>
+    <script src="./scripts/pages/index.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+  --font-primary: "Anton", sans-serif;
+  --font-secondary: "Manrope", sans-serif;
+  --color-yellow: #ffd15b;
+  --color-grey: #7a7a7a;
+  --color-light-grey: #c6c6c6;
+}
