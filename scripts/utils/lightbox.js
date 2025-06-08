@@ -1,5 +1,5 @@
 import { recipesData } from "../services/recipes.js";
-import { recipeLightboxTemplate } from "../templates/recipe-lightbox-template";
+import { recipeLightboxTemplate } from "../templates/recipe-lightbox.template.js";
 
 // gestion de la fiche recette
 export function displayLightbox() {

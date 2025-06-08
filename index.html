@@ -50,10 +50,11 @@
         </p>
 
         <div
-          class="searchbar flex flex-row items-center justify-between h-18 w-238.5 bg-white rounded-xl mt-8 p-3"
+          class="search search-container flex flex-row items-center justify-between h-18 w-238.5 bg-white rounded-xl mt-8 p-3"
         >
           <input
             type="text"
+            id="search-navbar"
             name="research"
             placeholder="Rechercher une recette, un ingrédient..."
             class="w-full text-lg text-grey outline-0"
@@ -83,7 +84,7 @@
         <div class="filters-and-search flex flex-col">
           <div id="recipe-search" class="flex flex-row">
             <div
-              class="recipe-search_container recipe-search-ingredients group relative mr-18"
+              class="search-container dropdown-search-container recipe-search-ingredients group relative mr-18"
               aria-expanded="false"
             >
               <!-- bouton du menu déroulant -->
@@ -98,14 +99,15 @@
               </button>
               <!-- menu déroulant -->
               <div
-                class="dropdown_menu hidden absolute top-full left-0 w-full z-20 pl-4 pr-4 justif-between rounded-b-xl bg-white shadow-md flex-col group-aria-[expanded=true]:flex"
+                class="dropdown_menu hidden absolute top-full left-0 w-full z-20 justify-between rounded-b-xl bg-white shadow-md flex-col group-aria-[expanded=true]:flex"
               >
                 <!-- recherche -->
                 <div
-                  class="search flex flex-row items-center rounded-xs h-9 p-2 bg-white outline-1 outline-light-grey"
+                  class="search flex flex-row items-center rounded-xs h-9 p-2 ml-4 mr-4 mb-4 bg-white outline-1 outline-light-grey"
                 >
                   <input
                     type="text"
+                    id="search-ingredients"
                     name="research"
                     class="w-full text-sm text-grey outline-0 pt-2 pb-2"
                   />
@@ -122,7 +124,7 @@
                   <button
                     type="submit"
                     aria-label="rechercher"
-                    class="search-button h-6 w-6 rounded-xl bg-white cursor-pointer"
+                    class="search-button dropdown_btn h-6 w-6 rounded-xl bg-white cursor-pointer"
                   >
                     <div class="icon icon-magnifying-glass rotate-45">
                       <div class="flex flex-row justify-center items-center">
@@ -136,11 +138,15 @@
                     </div>
                   </button>
                 </div>
+                <!-- suggestions -->
+                <div class="suggestions"></div>
+                <!-- affichage des tags dans le menu -->
+                <div class="actual-inputs"></div>
                 <!-- historique -->
                 <div
-                  class="record flex flex-wrap mt-4 text-sm/8 h-full max-h-52 overflow-y-scroll"
+                  class="record flex flex-wrap text-sm/8 h-full max-h-52 overflow-y-scroll"
                 >
-                  <p class="recipe-record flex w-full">
+                  <p class="recipe-record flex w-full pl-4 pr-4">
                     jus de citron <br />
                     glaçons<br />
                     tomate <br />poulet <br />poivron rouge <br />thon en
@@ -151,7 +157,7 @@
             </div>
 
             <div
-              class="recipe-search_container recipe-search-appliance group relative mr-18"
+              class="search-container dropdown-search-container recipe-search-appliance group relative mr-18"
               aria-expanded="false"
             >
               <!-- bouton du menu déroulant -->
@@ -166,14 +172,15 @@
               </button>
               <!-- menu déroulant -->
               <div
-                class="dropdown_menu hidden absolute top-full left-0 w-full z-20 pl-4 pr-4 justif-between rounded-b-xl bg-white shadow-md flex-col group-aria-[expanded=true]:flex"
+                class="dropdown_menu hidden absolute top-full left-0 w-full z-20 justify-between rounded-b-xl bg-white shadow-md flex-col group-aria-[expanded=true]:flex"
               >
                 <!-- recherche -->
                 <div
-                  class="search flex flex-row items-center rounded-xs h-9 p-2 bg-white outline-1 outline-light-grey"
+                  class="search flex flex-row items-center rounded-xs h-9 p-2 ml-4 mr-4 mb-4 bg-white outline-1 outline-light-grey"
                 >
                   <input
                     type="text"
+                    id="search-appliance"
                     name="research"
                     class="w-full text-sm text-grey outline-0 pt-2 pb-2"
                   />
@@ -190,7 +197,7 @@
                   <button
                     type="submit"
                     aria-label="rechercher"
-                    class="search-button h-6 w-6 rounded-xl bg-white cursor-pointer"
+                    class="search-button dropdown_btn h-6 w-6 rounded-xl bg-white cursor-pointer"
                   >
                     <div class="icon icon-magnifying-glass rotate-45">
                       <div class="flex flex-row justify-center items-center">
@@ -204,11 +211,15 @@
                     </div>
                   </button>
                 </div>
+                <!-- suggestions -->
+                <div class="suggestions"></div>
+                <!-- affichage des tags dans le menu -->
+                <div class="actual-inputs"></div>
                 <!-- historique -->
                 <div
-                  class="record flex flex-wrap mt-4 text-sm/8 h-full max-h-52 overflow-y-scroll group"
+                  class="record flex flex-wrap text-sm/8 h-full max-h-52 overflow-y-scroll group"
                 >
-                  <p class="recipe-record flex w-full">
+                  <p class="recipe-record flex w-full pl-4 pr-4">
                     jus de citron <br />
                     glaçons<br />
                     tomate <br />poulet <br />poivron rouge <br />thon en
@@ -219,7 +230,7 @@
             </div>
 
             <div
-              class="recipe-search_container recipe-search-ustensils group relative mr-18"
+              class="search-container dropdown-search-container recipe-search-ustensils group relative mr-18"
               aria-expanded="false"
             >
               <!-- bouton du menu déroulant -->
@@ -234,14 +245,15 @@
               </button>
               <!-- menu déroulant -->
               <div
-                class="dropdown_menu hidden absolute top-full left-0 w-full z-20 pl-4 pr-4 justif-between rounded-b-xl bg-white shadow-md flex-col group-aria-[expanded=true]:flex"
+                class="dropdown_menu hidden absolute top-full left-0 w-full z-20 justify-between rounded-b-xl bg-white shadow-md flex-col group-aria-[expanded=true]:flex"
               >
                 <!-- recherche -->
                 <div
-                  class="search flex flex-row items-center rounded-xs h-9 p-2 bg-white outline-1 outline-light-grey"
+                  class="search flex flex-row items-center rounded-xs h-9 p-2 ml-4 mr-4 mb-4 bg-white outline-1 outline-light-grey"
                 >
                   <input
                     type="text"
+                    id="search-ustensils"
                     name="research"
                     class="w-full text-sm text-grey outline-0 pt-2 pb-2"
                   />
@@ -258,7 +270,7 @@
                   <button
                     type="submit"
                     aria-label="rechercher"
-                    class="search-button h-6 w-6 rounded-xl bg-white cursor-pointer"
+                    class="search-button dropdown_btn h-6 w-6 rounded-xl bg-white cursor-pointer"
                   >
                     <div class="icon icon-magnifying-glass rotate-45">
                       <div class="flex flex-row justify-center items-center">
@@ -272,11 +284,15 @@
                     </div>
                   </button>
                 </div>
+                <!-- suggestions -->
+                <div class="suggestions"></div>
+                <!-- affichage des tags dans le menu -->
+                <div class="actual-inputs"></div>
                 <!-- historique -->
                 <div
-                  class="record flex flex-wrap mt-4 text-sm/8 h-full max-h-52 overflow-y-scroll"
+                  class="record flex flex-wrap text-sm/8 h-full max-h-52 overflow-y-scroll"
                 >
-                  <p class="recipe-record flex w-full">
+                  <p class="recipe-record flex w-full pl-4 pr-4">
                     jus de citron <br />
                     glaçons<br />
                     tomate <br />poulet <br />poivron rouge <br />thon en
@@ -287,29 +303,14 @@
             </div>
           </div>
         </div>
-        <div>
-          <p class="font-primary text-lg">1500 recettes</p>
+        <div class="recipe-number">
+          <p class="recipe-number-text font-primary text-lg"></p>
         </div>
       </div>
       <div
         class="recipe-filters mt-4 mb-4 flex-row items-center justify-between"
       >
-        <!-- exemple de filtre pour template -->
-        <div
-          class="filter flex mr-4 p-4 h-14 w-fit bg-yellow rounded-xl items-center"
-        >
-          <p class="filter-text flex text-sm">Exemple de filtre</p>
-          <div
-            class="icon icon-cross flex cursor-pointer items-center w-5 h-5 ml-3 relative"
-          >
-            <div
-              class="absolute rotate-45 bg-black h-0.5 w-full rounded-full"
-            ></div>
-            <div
-              class="absolute rotate-135 bg-black h-0.5 w-full rounded-full"
-            ></div>
-          </div>
-        </div>
+        <!-- insertion des tags ici -->
       </div>
       <!-- affichage dynamique des encarts des recettes -->
       <div class="recipe-gallery grid grid-cols-3 mt-5 gap-12"></div>
@@ -319,12 +320,12 @@
         id="lightbox-modal"
         role="dialog"
         aria-modal="true"
-        class="lightbox-modal fixed hidden inset-0 bg-neutral-900/50 items-center justify-center z-10"
+        class="lightbox-modal fixed hidden inset-0 bg-neutral-900/50 items-center justify-center z-20"
       >
         <div class="recipe-lightbox m-4"></div>
       </div>
     </main>
     <script src="./scripts/pages/index.js" type="module"></script>
-    <script src="./scripts/utils/lightbox.js" type="module"></script>
+    <script src="./scripts/utils/nav-dynamic-display.js" type="module"></script>
   </body>
 </html>
