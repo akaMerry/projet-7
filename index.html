@@ -25,14 +25,14 @@
       class="header relative flex flex-col text-white bg-black align-middle"
     >
       <img
-        src="/src/assets/lespetitsplats-background-image.jpg"
+        src="/assets/lespetitsplats-background-image.jpg"
         id="background-image"
         class="absolute object-cover w-full h-167 opacity-75"
       />
 
       <div id="logo" class="absolute z-10 ml-14 mt-14">
         <img
-          src="/src/assets/lespetitsplats-logo.png"
+          src="/assets/lespetitsplats-logo.png"
           alt="logo Les petits plats"
           class="h-6.5"
         />
@@ -78,7 +78,7 @@
       </div>
     </header>
 
-    <main class="bg-neutral-200 pt-6 pl-25 pr-25">
+    <main class="bg-neutral-200 pt-6 pb-6 pl-25 pr-25">
       <div id="navbar" class="flex items-center justify-between">
         <div class="filters-and-search flex flex-col">
           <div id="recipe-search" class="flex flex-row">
@@ -110,7 +110,7 @@
                     class="w-full text-sm text-grey outline-0 pt-2 pb-2"
                   />
                   <div
-                    class="icon icon-erase cursor-pointer hidden items-center w-4 h-4 ml-0.5 mr-1 relative"
+                    class="icon icon-cross cursor-pointer hidden items-center w-4 h-4 ml-0.5 mr-1 relative"
                   >
                     <div
                       class="absolute rotate-45 bg-grey h-px w-full rounded-full"
@@ -178,7 +178,7 @@
                     class="w-full text-sm text-grey outline-0 pt-2 pb-2"
                   />
                   <div
-                    class="icon icon-erase cursor-pointer hidden items-center w-4 h-4 ml-0.5 mr-1 relative"
+                    class="icon icon-cross cursor-pointer hidden items-center w-4 h-4 ml-0.5 mr-1 relative"
                   >
                     <div
                       class="absolute rotate-45 bg-grey h-px w-full rounded-full"
@@ -246,7 +246,7 @@
                     class="w-full text-sm text-grey outline-0 pt-2 pb-2"
                   />
                   <div
-                    class="icon icon-erase cursor-pointer hidden items-center w-4 h-4 ml-0.5 mr-1 relative"
+                    class="icon icon-cross cursor-pointer hidden items-center w-4 h-4 ml-0.5 mr-1 relative"
                   >
                     <div
                       class="absolute rotate-45 bg-grey h-px w-full rounded-full"
@@ -286,33 +286,45 @@
               </div>
             </div>
           </div>
-          <div
-            class="recipe-filters mt-4 mb-4 flex-row items-center justify-between"
-          >
-            <div
-              class="filter flex mr-4 h-14 p-4 bg-yellow rounded-xl items-center"
-            >
-              <p class="filter-text flex">Exemple de filtre</p>
-              <div
-                class="icon icon-erase flex cursor-pointer items-center w-5 h-5 pl-2 relative"
-              >
-                <div
-                  class="absolute rotate-45 bg-black h-0.5 w-full rounded-full"
-                ></div>
-                <div
-                  class="absolute rotate-135 bg-black h-0.5 w-full rounded-full"
-                ></div>
-              </div>
-            </div>
-          </div>
         </div>
         <div>
-          <p>1500 recettes</p>
+          <p class="font-primary text-lg">1500 recettes</p>
+        </div>
+      </div>
+      <div
+        class="recipe-filters mt-4 mb-4 flex-row items-center justify-between"
+      >
+        <!-- exemple de filtre pour template -->
+        <div
+          class="filter flex mr-4 p-4 h-14 w-fit bg-yellow rounded-xl items-center"
+        >
+          <p class="filter-text flex text-sm">Exemple de filtre</p>
+          <div
+            class="icon icon-cross flex cursor-pointer items-center w-5 h-5 ml-3 relative"
+          >
+            <div
+              class="absolute rotate-45 bg-black h-0.5 w-full rounded-full"
+            ></div>
+            <div
+              class="absolute rotate-135 bg-black h-0.5 w-full rounded-full"
+            ></div>
+          </div>
         </div>
       </div>
       <!-- affichage dynamique des encarts des recettes -->
       <div class="recipe-gallery grid grid-cols-3 mt-5 gap-12"></div>
+
+      <!-- modale de fiche recette -->
+      <div
+        id="lightbox-modal"
+        role="dialog"
+        aria-modal="true"
+        class="lightbox-modal fixed hidden inset-0 bg-neutral-900/50 items-center justify-center z-10"
+      >
+        <div class="recipe-lightbox m-4"></div>
+      </div>
     </main>
     <script src="./scripts/pages/index.js" type="module"></script>
+    <script src="./scripts/utils/lightbox.js" type="module"></script>
   </body>
 </html>

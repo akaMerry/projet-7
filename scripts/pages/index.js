@@ -1,5 +1,8 @@
 import { recipesData } from "../services/recipes.js";
 import { recipeCardTemplate } from "../templates/recipe-card-template";
+import { displayLightbox } from "../utils/lightbox.js";
+
+// gestion des menus déroulants
 function dropdownMenu() {
   const containers = document.querySelectorAll(".recipe-search_container");
 
@@ -9,7 +12,7 @@ function dropdownMenu() {
     const menu = container.querySelector(".dropdown_menu");
     const search = menu.querySelector(".search");
     const input = search.querySelector("input");
-    const erase = search.querySelector(".icon-erase");
+    const erase = search.querySelector(".icon-cross");
 
     // au clic le menu se déroule ou se referme + style
     button.addEventListener("click", () => {
@@ -44,16 +47,49 @@ function dropdownMenu() {
   });
 }
 
-dropdownMenu();
-
+// gestion de l'affichage initial de toutes les recettes
 function displayRecipeCards() {
   const gallery = document.querySelector(".recipe-gallery");
   gallery.innerHTML = "";
 
   recipesData().forEach((recipe) => {
-    const recipesCardDom = recipeCardTemplate().recipeCardDOM(recipe);
-    gallery.appendChild(recipesCardDom);
+    gallery.appendChild(recipeCardTemplate().recipeCardDOM(recipe));
   });
 }
 
-displayRecipeCards();
+// initialisation de la page
+async function init() {
+  dropdownMenu();
+  displayRecipeCards();
+  displayLightbox();
+}
+
+init();
+
+// algorithme de tri :
+
+// saisie dans un input
+
+// BARRE DE RECHERCHE
+// si la saisie a minimum 3 caractères
+// et correspond à un ou plusieurs termes parmi TITRE, INGREDIENTS, DESCRIPTIONS
+// => tri et réaffichage de la gallerie en conséquence
+// => affichage du tag parmi les filters
+//
+// si la saisie ne correspond à rien
+// => affichage du message "aucune recette ne contient le terme "blabla". Essayez avec un terme différent comme "tarte aux pommes" ou "poisson"."
+// + un bouton pour réinitialiser la recherche
+// si la recherche correspond
+// mise à jour de la galerie
+
+// NAVBAR
+// si la saisie a minimum 2 caractères
+// menu d'auto-complétion selon les lettres saisies
+// lors de la sélection d'un terme
+// terme validé = input.value
+// affichage du tag parmi les filters et dans le menu déroulant
+// chaque clic sur une croix réinitialise les filtres
+// tri selon les input.content
+// mise à jour de la galerie
+//
+//cliquer sur la croix un tag réinitialise la galerie

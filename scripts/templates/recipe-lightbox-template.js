@@ -1,6 +1,6 @@
-export function recipeCardTemplate() {
-  function recipeCardDOM(recipe) {
-    // Déclatation des éléments
+export function recipeLightboxTemplate() {
+  function recipeLightboxDOM(recipe) {
+    // Déclaration des éléments
     const article = document.createElement("article");
     article.setAttribute("data-id", recipe.id);
     const img = document.createElement("img");
@@ -18,6 +18,10 @@ export function recipeCardTemplate() {
     const grid = document.createElement("grid");
     const tag = document.createElement("div");
     tag.textContent = recipe.time + " min";
+    const crossIcon = document.createElement("div");
+    const cross = document.createElement("div");
+    const leftCross = document.createElement("div");
+    const rightCross = document.createElement("div");
 
     // Placement des ingrédients dans la grille
     recipe.ingredients.forEach((item) => {
@@ -42,21 +46,32 @@ export function recipeCardTemplate() {
 
     // Tailwind CSS
     article.className =
-      "flex flex-col shadow-md bg-white w-95 h-183 rounded-xl cursor-pointer relative";
+      "flex flex-col shadow-md bg-white w-95 h-fit max-h-screen rounded-xl relative";
     tag.className =
-      "flex absolute h-6.5 bg-yellow text-black rounded-full p-4 right-5 top-5 items-center text-xs";
+      "flex absolute h-6.5 bg-yellow text-black font-medium rounded-full p-4 left-5 top-5 items-center text-xs";
     img.className = "h-63.5 w-full object-cover rounded-t-lg";
-    text.className = "p-7";
+    text.className = "p-7 overflow-y-scroll";
     title.className = "font-primary text-lg mb-8";
     preview.className = "font-bold text-xs text-grey bold uppercase mb-4";
-    description.className = "mb-8 h-20 text-sm overflow-hidden text-ellipsis";
+    description.className = "mb-8 text-sm";
     instructions.className = "font-bold text-xs text-grey bold uppercase mb-4";
-    grid.className = "grid grid-cols-2 gap-5 self-center";
-
+    grid.className = "grid flex grid-cols-2 gap-5 self-center";
+    crossIcon.className =
+      "icon icon-cross cursor-pointer items-center w-6.5 h-6.5 absolute right-5 top-5";
+    cross.className =
+      "relative flex w-6.5 h-6.5 items-center justify-center bg-yellow rounded-full";
+    leftCross.className =
+      "absolute flex rotate-45 bg-black h-0.5 w-2/3 rounded-full";
+    rightCross.className =
+      "absolute flex rotate-135 bg-black h-0.5 w-2/3 rounded-full";
     // rattachement des éléments
     article.appendChild(img);
     article.appendChild(text);
     article.appendChild(tag);
+    cross.appendChild(leftCross);
+    cross.appendChild(rightCross);
+    crossIcon.appendChild(cross);
+    article.appendChild(crossIcon);
     text.appendChild(title);
     text.appendChild(preview);
     text.appendChild(description);
@@ -64,5 +79,5 @@ export function recipeCardTemplate() {
     text.appendChild(grid);
     return article;
   }
-  return { recipeCardDOM };
+  return { recipeLightboxDOM };
 }

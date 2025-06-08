@@ -1830,7 +1830,7 @@ export function recipesData() {
   const mappedRecipes = recipes.map((recipe) => ({
     id: recipe.id,
     name: recipe.name,
-    picture: `src/assets/recipes/${recipe.image}`,
+    picture: `/assets/recipes/${recipe.image}`,
     time: recipe.time,
     servings: recipe.servings,
     description: recipe.description,
