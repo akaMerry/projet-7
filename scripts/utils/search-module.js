@@ -2,25 +2,22 @@ import { recipesData } from "../services/recipes.js";
 import { tagTemplate } from "../templates/tag.template.js";
 import { dropdownTagTemplate } from "../templates/dropdown-tag.template.js";
 
+// le tableau dans lequel sont stockées toutes les données de recherche actives
+let research = [];
+
 export function searchModule() {
   const submitBtns = document.querySelectorAll(".search-button");
   const inputs = document.querySelectorAll(".dropdown-search-container input");
 
   // TO DO boucle à travers les menus déroulants pour gérer la suggestion
-  inputs.forEach((input) => {
-    const dropdownMenu = input.closest(".dropdown-search-container");
-    const suggestions = dropdownMenu.querySelector(".suggestions");
-
-    if (input.value.length > 3) {
-    }
-  });
 
   // boucle à travers les boutons pour traiter la validation de l'input
   submitBtns.forEach((btn) => {
     // gestion de la validation au clic
     btn.addEventListener("click", () => {
-      const container = btn.closest(".search-container");
-      const input = container.querySelector("input[name='research']");
+      const input = btn
+        .closest(".search")
+        .querySelector("input[name='research']");
       search(input);
     });
   });
@@ -36,8 +33,6 @@ export function searchModule() {
       }
     });
   });
-
-  // TO DO gestion
 }
 
 // mon algorythme de recherche
@@ -45,8 +40,6 @@ function search(input) {
   const allRecipes = recipesData();
   // la value est une chaîne de caractères en minuscule
   const value = input.value.trim().toLowerCase();
-  // le tableau dans lequel sont stockées toutes les données de recherche actives
-  let research = [];
 
   // clear de l'input si c'est un input vide
   if (!value) return;
@@ -86,8 +79,8 @@ function search(input) {
     );
   }
 
-  // si la data a au moins une entrée commune avec le tableau allRecipes, elle est valide
-  if (valid) {
+  // si la value a au moins une entrée commune avec le tableau allRecipes et qu'elle n'existe pas déjà dans le tableau
+  if (valid && !research.includes(value)) {
     // elle est stockée dans le tableau research
     research.push(value);
 
@@ -101,7 +94,7 @@ function search(input) {
         input.id
       )
     ) {
-      const dropdownMenu = input.closest(".dropdown-search-container");
+      const dropdownMenu = input.closest(".dropdown-menu");
       const actualInputs = dropdownMenu.querySelector(".actual-inputs");
       // les tags sont aussi affichés dans le menu déroulant en question
       actualInputs.appendChild(dropdownTagTemplate().dropdownTagDOM(value));

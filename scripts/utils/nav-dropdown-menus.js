@@ -1,30 +1,31 @@
-// gestion des menus déroulants
 export function dropdownMenu() {
-  const containers = document.querySelectorAll(".dropdown-search-container");
+  // Select each dropdown group
+  const dropdowns = document.querySelectorAll(
+    ".recipe-search-ingredients, .recipe-search-appliance, .recipe-search-ustensils"
+  );
 
-  // pour chaque menu déroulant
-  containers.forEach((container) => {
-    const button = container.querySelector(".dropdown_btn");
-    const menu = container.querySelector(".dropdown_menu");
-
-    // au clic le menu se déroule ou se referme + style
-    button.addEventListener("click", () => {
-      if (container.getAttribute("aria-expanded") === "false") {
-        container.setAttribute("aria-expanded", "true");
-        button.classList.remove("rounded-xl");
-        button.classList.add("rounded-t-xl");
-      } else {
-        container.setAttribute("aria-expanded", "false");
-        button.classList.add("rounded-xl");
-        button.classList.remove("rounded-t-xl");
-      }
-    });
-
-    const search = menu.querySelector(".search");
+  dropdowns.forEach((dropdown) => {
+    const button = dropdown.querySelector(".dropdown-btn");
+    const menu = dropdown.querySelector(".dropdown-menu");
+    const search = dropdown.querySelector(".search-container");
     const input = search.querySelector("input");
     const erase = search.querySelector(".icon-cross");
 
-    // event lsitener à l'input pour le comportement de l'icone croix "erase"
+    // Toggle menu open/close
+    button.addEventListener("click", () => {
+      const expanded = dropdown.getAttribute("aria-expanded") === "true";
+      dropdown.setAttribute("aria-expanded", expanded ? "false" : "true");
+
+      if (expanded) {
+        button.classList.add("rounded-xl");
+        button.classList.remove("rounded-t-xl");
+      } else {
+        button.classList.remove("rounded-xl");
+        button.classList.add("rounded-t-xl");
+      }
+    });
+
+    // Show/hide cross icon depending on input content
     input.addEventListener("input", () => {
       if (input.value.length > 0) {
         erase.classList.remove("hidden");
@@ -35,7 +36,7 @@ export function dropdownMenu() {
       }
     });
 
-    // event listener sur l'icone croix
+    // Clear input when cross icon is clicked
     erase.addEventListener("click", () => {
       input.value = "";
       erase.classList.add("hidden");
