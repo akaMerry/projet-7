@@ -10,10 +10,11 @@ export function dropdownTagTemplate() {
 
     // Tailwind CSS
     tag.className =
-      "filter flex p-3 h-9 mb-2 w-full bg-yellow items-center justify-between";
+      "filter flex p-4 h-9 mb-1 w-full bg-yellow items-center justify-between font-bold";
     text.classname = "filter-text";
     text.textContent = `${value}`;
-    crossIcon.className = "icon icon-cross flex cursor-pointer w-4 h-4 ml-3";
+    crossIcon.className =
+      "icon icon-cross tag-cross-icon flex cursor-pointer w-4 h-4 ml-3";
     cross.className =
       "bg-black rounded-full w-4 h-4 items-center justify-center flex relative";
     leftCross.className =

@@ -13,7 +13,7 @@ export function tagTemplate() {
     text.classname = "filter-text flex text-sm";
     text.textContent = `${value}`;
     crossIcon.className =
-      "icon icon-cross flex cursor-pointer items-center w-5 h-5 ml-3 relative";
+      "icon icon-cross tag-cross-icon flex cursor-pointer items-center w-5 h-5 ml-3 relative";
     leftCross.className =
       "absolute rotate-45 bg-black h-0.5 w-full rounded-full";
     rightCross.className =

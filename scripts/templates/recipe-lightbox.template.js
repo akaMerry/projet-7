@@ -48,7 +48,7 @@ export function recipeLightboxTemplate() {
     article.className =
       "flex flex-col shadow-md bg-white w-95 h-fit max-h-screen rounded-xl relative";
     tag.className =
-      "flex absolute h-6.5 bg-yellow text-black font-medium rounded-full p-4 left-5 top-5 items-center text-xs";
+      "flex absolute h-6.5 bg-yellow text-black font-medium rounded-full p-4 left-5 top-5 items-center text-xs shadow-sm";
     img.className = "h-63.5 w-full object-cover rounded-t-lg";
     text.className = "p-7 overflow-y-scroll";
     title.className = "font-primary text-lg mb-8";
@@ -57,7 +57,7 @@ export function recipeLightboxTemplate() {
     instructions.className = "font-bold text-xs text-grey bold uppercase mb-4";
     grid.className = "grid flex grid-cols-2 gap-5 self-center";
     crossIcon.className =
-      "icon icon-cross cursor-pointer items-center w-6.5 h-6.5 absolute right-5 top-5";
+      "icon icon-cross cursor-pointer items-center w-6.5 h-6.5 absolute right-5 top-5 shadow-sm";
     cross.className =
       "relative flex w-6.5 h-6.5 items-center justify-center bg-yellow rounded-full";
     leftCross.className =

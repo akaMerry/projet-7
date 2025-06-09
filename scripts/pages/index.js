@@ -3,7 +3,7 @@ import { recipeCardTemplate } from "../templates/recipe-card.template.js";
 import { displayLightbox } from "../utils/lightbox.js";
 import { recipeNumber } from "../utils/nav-dynamic-display.js";
 import { dropdownMenu } from "../utils/nav-dropdown-menus.js";
-import { searchAlgorhythm } from "../utils/search-algorhythm.js";
+import { searchModule } from "../utils/search-module.js";
 
 // gestion de l'affichage initial de toutes les recettes
 function displayRecipeCards() {
@@ -16,6 +16,6 @@ function displayRecipeCards() {
 }
 dropdownMenu();
 displayRecipeCards();
-searchAlgorhythm();
+searchModule();
 displayLightbox();
 recipeNumber();
