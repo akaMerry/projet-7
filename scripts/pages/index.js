@@ -6,7 +6,7 @@ import { dropdownMenu } from "../utils/nav-dropdown-menus.js";
 import { searchModule } from "../utils/search-module.js";
 
 // gestion de l'affichage initial de toutes les recettes
-function displayRecipeCards() {
+export function displayRecipeCards() {
   const gallery = document.querySelector(".recipe-gallery");
   gallery.innerHTML = "";
 

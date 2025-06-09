@@ -79,7 +79,7 @@
       </div>
     </header>
 
-    <main class="bg-neutral-200 pt-6 pb-6 pl-25 pr-25">
+    <main class="bg-neutral-200 pt-6 pb-30 pl-25 pr-25">
       <div id="navbar" class="flex items-center justify-between">
         <div class="filters-and-search flex flex-col">
           <div id="recipe-search" class="flex flex-row">
@@ -309,6 +309,13 @@
       </div>
       <div class="recipe-filters mt-6 pb-4 flex flex-row items-center">
         <!-- insertion des tags ici -->
+      </div>
+      <div
+        class="relative no-recipe-message hidden flex-col justify-center items-center mt-5 gap-12 z-10"
+      >
+        <p class="text-center">
+          Aucune recette ne correspond à votre recherche.
+        </p>
       </div>
       <!-- affichage dynamique des encarts des recettes -->
       <div class="recipe-gallery grid grid-cols-3 mt-5 gap-12"></div>

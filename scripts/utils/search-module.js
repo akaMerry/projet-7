@@ -1,11 +1,50 @@
 import { recipesData } from "../services/recipes.js";
 import { tagTemplate } from "../templates/tag.template.js";
 import { dropdownTagTemplate } from "../templates/dropdown-tag.template.js";
+import { recipeCardTemplate } from "../templates/recipe-card.template.js";
+import { recipeNumber } from "../utils/nav-dynamic-display.js";
 
 // le tableau dans lequel sont stockées toutes les données de recherche actives
 let research = [];
 
+const gallery = document.querySelector(".recipe-gallery");
+const noRecipeMessage = document.querySelector(".no-recipe-message");
+const allRecipes = recipesData();
+
 export function searchModule() {
+  closeTag();
+
+  const navbarInput = document.querySelector("#search-navbar");
+  navbarInput.addEventListener("input", (e) => {
+    const value = e.target.value.trim();
+
+    if (value === "") {
+      if (research.length > 0) {
+        // s'il y a des mots-clés actifs on réaffiche la galerie filtrée avec ces mots-clés
+        redisplayGallery();
+
+        // et on masque le message "aucune recette trouvée"
+        noRecipeMessage.classList.remove("flex");
+        noRecipeMessage.classList.add("hidden");
+        gallery.classList.remove("hidden");
+      } else {
+        // sinon on affiche toutes les recettes
+        gallery.innerHTML = "";
+        allRecipes.forEach((recipe) => {
+          gallery.appendChild(recipeCardTemplate().recipeCardDOM(recipe));
+        });
+
+        // et on masque le message "aucune recette trouvée"
+        noRecipeMessage.classList.remove("flex");
+        noRecipeMessage.classList.add("hidden");
+        gallery.classList.remove("hidden");
+
+        // mise à jour du compteur dynamique
+        recipeNumber(allRecipes.length);
+      }
+    }
+  });
+
   const submitBtns = document.querySelectorAll(".search-button");
   const inputs = document.querySelectorAll(".dropdown-search-container input");
 
@@ -35,9 +74,8 @@ export function searchModule() {
   });
 }
 
-// mon algorythme de recherche
+// mon algorithme de recherche
 function search(input) {
-  const allRecipes = recipesData();
   // la value est une chaîne de caractères en minuscule
   const value = input.value.trim().toLowerCase();
 
@@ -79,6 +117,15 @@ function search(input) {
     );
   }
 
+  // en cas de mot-clé invalide dans la barre supérieure, un message est affiché dans la galerie
+  if (!valid && input.id === "search-navbar") {
+    gallery.classList.add("hidden");
+    noRecipeMessage.classList.remove("hidden");
+    noRecipeMessage.classList.add("flex");
+    gallery.innerHTML = "";
+    recipeNumber();
+  }
+
   // si la value a au moins une entrée commune avec le tableau allRecipes et qu'elle n'existe pas déjà dans le tableau
   if (valid && !research.includes(value)) {
     // elle est stockée dans le tableau research
@@ -100,8 +147,88 @@ function search(input) {
       actualInputs.appendChild(dropdownTagTemplate().dropdownTagDOM(value));
     }
     // l'input est cleared
+    redisplayGallery();
     input.value = "";
   }
   // ce console.log est uniquement là pour le flex
   console.log(research);
+}
+
+// gestion de la
+function redisplayGallery() {
+  // filtrage des recettes pour ne garder que celles qui contiennent tous les mots-clés stockés dans research[] dans n'importe quelle propriété
+  const filteredRecipes = allRecipes.filter((recipe) => {
+    return research.every((keyword) => {
+      const keywordLower = keyword.toLowerCase();
+
+      if (recipe.name.toLowerCase().includes(keywordLower)) return true;
+      if (recipe.description.toLowerCase().includes(keywordLower)) return true;
+      if (
+        recipe.ingredients.some((ing) =>
+          ing.ingredient.toLowerCase().includes(keywordLower)
+        )
+      )
+        return true;
+      if (recipe.appliance.toLowerCase().includes(keywordLower)) return true;
+      if (
+        recipe.ustensils.some((ust) => ust.toLowerCase().includes(keywordLower))
+      )
+        return true;
+
+      return false;
+    });
+  });
+
+  gallery.innerHTML = "";
+
+  // si aucune entrée ne correspond, affichage du message
+  if (filteredRecipes.length === 0) {
+    gallery.classList.add("hidden");
+    noRecipeMessage.classList.remove("hidden");
+    noRecipeMessage.classList.add("flex");
+    gallery.innerHTML = "";
+    recipeNumber();
+  } else {
+    filteredRecipes.forEach((recipe) => {
+      gallery.appendChild(recipeCardTemplate().recipeCardDOM(recipe));
+    });
+  }
+
+  // mise à jour de la fonction de compteur dynamique des recettes
+  recipeNumber(filteredRecipes.length);
+}
+
+function closeTag() {
+  // event listener des filtres
+  document.addEventListener("click", (e) => {
+    const cross = e.target.closest(".tag-cross-icon");
+
+    // récupération du keyword pour le supprimer dans le tableau research[]
+    const tag = cross.closest(".filter");
+    const keyword = tag.querySelector("p")?.textContent.toLowerCase();
+
+    // supprime le tag cliqué
+    tag.remove();
+
+    // supprime le tag correspondant dans l'autre emplacement (menu déroulant ou barre de recherche)
+    document.querySelectorAll(".filter").forEach((t) => {
+      const tText = t.querySelector("p")?.textContent.toLowerCase();
+      if (tText === keyword) {
+        t.remove();
+      }
+    });
+
+    // retire le mot-clé du tableau research[]
+    research = research.filter((term) => term !== keyword);
+
+    // cache le message si besoin
+    if (noRecipeMessage.classList.contains("flex")) {
+      noRecipeMessage.classList.remove("flex");
+      noRecipeMessage.classList.add("hidden");
+      gallery.classList.remove("hidden");
+    }
+
+    // mise à jour la galerie
+    redisplayGallery();
+  });
 }
