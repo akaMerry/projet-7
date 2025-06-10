@@ -57,9 +57,9 @@ export function recipeLightboxTemplate() {
     instructions.className = "font-bold text-xs text-grey bold uppercase mb-4";
     grid.className = "grid flex grid-cols-2 gap-5 self-center";
     crossIcon.className =
-      "icon icon-cross cursor-pointer items-center w-6.5 h-6.5 absolute right-5 top-5 shadow-sm";
+      "icon icon-cross cursor-pointer items-center w-6.5 h-6.5 absolute right-5 top-5";
     cross.className =
-      "relative flex w-6.5 h-6.5 items-center justify-center bg-yellow rounded-full";
+      "relative flex w-6.5 h-6.5 items-center justify-center bg-yellow rounded-full shadow-sm";
     leftCross.className =
       "absolute flex rotate-45 bg-black h-0.5 w-1/2 rounded-full";
     rightCross.className =

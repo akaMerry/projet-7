@@ -1,17 +1,15 @@
 export function dropdownMenu() {
-  // Select each dropdown group
   const dropdowns = document.querySelectorAll(
     ".recipe-search-ingredients, .recipe-search-appliance, .recipe-search-ustensils"
   );
 
   dropdowns.forEach((dropdown) => {
     const button = dropdown.querySelector(".dropdown-btn");
-    const menu = dropdown.querySelector(".dropdown-menu");
     const search = dropdown.querySelector(".search-container");
     const input = search.querySelector("input");
-    const erase = search.querySelector(".icon-cross");
+    const cross = search.querySelector(".icon-cross");
 
-    // Toggle menu open/close
+    // ouverture et fermeture des menus déroulants
     button.addEventListener("click", () => {
       const expanded = dropdown.getAttribute("aria-expanded") === "true";
       dropdown.setAttribute("aria-expanded", expanded ? "false" : "true");
@@ -25,22 +23,23 @@ export function dropdownMenu() {
       }
     });
 
-    // Show/hide cross icon depending on input content
-    input.addEventListener("input", () => {
-      if (input.value.length > 0) {
-        erase.classList.remove("hidden");
-        erase.classList.add("flex");
+    // si l'input est vide la croix disparaît
+    input.addEventListener("input", (e) => {
+      const value = e.target.value.trim();
+      if (value === "" && cross.classList.contains("flex")) {
+        cross.classList.add("hidden");
+        cross.classList.remove("flex");
       } else {
-        erase.classList.add("hidden");
-        erase.classList.remove("flex");
+        cross.classList.remove("hidden");
+        cross.classList.add("flex");
       }
     });
 
-    // Clear input when cross icon is clicked
-    erase.addEventListener("click", () => {
+    // lorsqu'on clique sur la croix, l'input est cleared
+    cross.addEventListener("click", () => {
       input.value = "";
-      erase.classList.add("hidden");
-      erase.classList.remove("flex");
+      cross.classList.add("hidden");
+      cross.classList.remove("flex");
     });
   });
 }

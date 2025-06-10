@@ -1,4 +1,5 @@
 import { recipesData } from "../services/recipes.js";
+import { displayLightbox } from "../utils/lightbox.js";
 import { tagTemplate } from "../templates/tag.template.js";
 import { dropdownTagTemplate } from "../templates/dropdown-tag.template.js";
 import { recipeCardTemplate } from "../templates/recipe-card.template.js";
@@ -13,43 +14,9 @@ const allRecipes = recipesData();
 
 export function searchModule() {
   closeTag();
-
-  const navbarInput = document.querySelector("#search-navbar");
-  navbarInput.addEventListener("input", (e) => {
-    const value = e.target.value.trim();
-
-    if (value === "") {
-      if (research.length > 0) {
-        // s'il y a des mots-clés actifs on réaffiche la galerie filtrée avec ces mots-clés
-        redisplayGallery();
-
-        // et on masque le message "aucune recette trouvée"
-        noRecipeMessage.classList.remove("flex");
-        noRecipeMessage.classList.add("hidden");
-        gallery.classList.remove("hidden");
-      } else {
-        // sinon on affiche toutes les recettes
-        gallery.innerHTML = "";
-        allRecipes.forEach((recipe) => {
-          gallery.appendChild(recipeCardTemplate().recipeCardDOM(recipe));
-        });
-
-        // et on masque le message "aucune recette trouvée"
-        noRecipeMessage.classList.remove("flex");
-        noRecipeMessage.classList.add("hidden");
-        gallery.classList.remove("hidden");
-
-        // mise à jour du compteur dynamique
-        recipeNumber(allRecipes.length);
-      }
-    }
-  });
+  navbarInputListener();
 
   const submitBtns = document.querySelectorAll(".search-button");
-  const inputs = document.querySelectorAll(".dropdown-search-container input");
-
-  // TO DO boucle à travers les menus déroulants pour gérer la suggestion
-
   // boucle à travers les boutons pour traiter la validation de l'input
   submitBtns.forEach((btn) => {
     // gestion de la validation au clic
@@ -142,38 +109,53 @@ function search(input) {
       )
     ) {
       const dropdownMenu = input.closest(".dropdown-menu");
-      const actualInputs = dropdownMenu.querySelector(".actual-inputs");
-      // les tags sont aussi affichés dans le menu déroulant en question
-      actualInputs.appendChild(dropdownTagTemplate().dropdownTagDOM(value));
+      // le tag est aussi affiché dans le menu déroulant en question
+      dropdownMenu
+        .querySelector(".actual-inputs")
+        .appendChild(dropdownTagTemplate().dropdownTagDOM(value));
     }
     // l'input est cleared
     redisplayGallery();
+    displayLightbox();
     input.value = "";
   }
   // ce console.log est uniquement là pour le flex
   console.log(research);
 }
 
-// gestion de la
+// gestion de l'affichage dynamique de la galerie
 function redisplayGallery() {
   // filtrage des recettes pour ne garder que celles qui contiennent tous les mots-clés stockés dans research[] dans n'importe quelle propriété
   const filteredRecipes = allRecipes.filter((recipe) => {
     return research.every((keyword) => {
       const keywordLower = keyword.toLowerCase();
 
-      if (recipe.name.toLowerCase().includes(keywordLower)) return true;
-      if (recipe.description.toLowerCase().includes(keywordLower)) return true;
+      // créer un switch pour gérer les différents inputs selon leur provenance et affiner la recherche
+      if (
+        recipe.name
+          .toLowerCase()
+          .includes(recipe.name.toLowerCase().includes(keywordLower))
+      ) {
+        return true;
+      }
+      if (recipe.description.toLowerCase().includes(keywordLower)) {
+        return true;
+      }
       if (
         recipe.ingredients.some((ing) =>
           ing.ingredient.toLowerCase().includes(keywordLower)
         )
-      )
+      ) {
         return true;
-      if (recipe.appliance.toLowerCase().includes(keywordLower)) return true;
+      }
+      if (recipe.appliance.toLowerCase().includes(keywordLower)) {
+        return true;
+      }
       if (
         recipe.ustensils.some((ust) => ust.toLowerCase().includes(keywordLower))
-      )
+      ) {
         return true;
+      }
 
       return false;
     });
@@ -200,7 +182,8 @@ function redisplayGallery() {
 
 function closeTag() {
   // event listener des filtres
-  document.addEventListener("click", (e) => {
+  const filters = document.getElementById("navbar");
+  filters.addEventListener("click", (e) => {
     const cross = e.target.closest(".tag-cross-icon");
 
     // récupération du keyword pour le supprimer dans le tableau research[]
@@ -230,5 +213,42 @@ function closeTag() {
 
     // mise à jour la galerie
     redisplayGallery();
+    displayLightbox();
+  });
+}
+
+function navbarInputListener() {
+  const navbarInput = document.querySelector("#search-navbar");
+  navbarInput.addEventListener("input", (e) => {
+    const value = e.target.value.trim();
+
+    // lorsque l'input est vide
+    if (value === "") {
+      if (research.length > 0) {
+        // s'il y a des mots-clés actifs on réaffiche la galerie filtrée avec ces mots-clés
+        redisplayGallery();
+        displayLightbox();
+
+        // et on masque le message "aucune recette trouvée"
+        noRecipeMessage.classList.remove("flex");
+        noRecipeMessage.classList.add("hidden");
+        gallery.classList.remove("hidden");
+      } else {
+        // sinon on affiche toutes les recettes
+        gallery.innerHTML = "";
+        allRecipes.forEach((recipe) => {
+          gallery.appendChild(recipeCardTemplate().recipeCardDOM(recipe));
+        });
+
+        // et on masque le message "aucune recette trouvée"
+        noRecipeMessage.classList.remove("flex");
+        noRecipeMessage.classList.add("hidden");
+        gallery.classList.remove("hidden");
+
+        // mise à jour du compteur dynamique
+        recipeNumber(allRecipes.length);
+        displayLightbox();
+      }
+    }
   });
 }

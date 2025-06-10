@@ -25,7 +25,7 @@ export function displayLightbox() {
     }
   });
 
-  // pour chaque article, un event listener qui ouvre la lightbox
+  // pour chaque article, un event listener qui ouvre la fiche recette
   articles.forEach((item) => {
     item.addEventListener("click", () => {
       lightbox.innerHTML = "";
