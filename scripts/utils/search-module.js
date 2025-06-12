@@ -74,13 +74,13 @@ function search(input) {
     );
   } else if (input.id === "search-appliance") {
     // pour les appareils, elle est comparée avec les appareils
-    valid = allRecipes.some(
-      (recipe) => recipe.appliance.toLowerCase() === value
+    valid = allRecipes.some((recipe) =>
+      recipe.appliance.toLowerCase().includes(value)
     );
   } else if (input.id === "search-ustensils") {
     // pour les ustensiles, elle est comparée avec des ustensiles
     valid = allRecipes.some((recipe) =>
-      recipe.ustensils.some((u) => u.toLowerCase() === value)
+      recipe.ustensils.some((u) => u.toLowerCase().includes(value))
     );
   }
 
@@ -180,7 +180,7 @@ function redisplayGallery() {
   recipeNumber(filteredRecipes.length);
 }
 
-function closeTag() {
+export function closeTag() {
   // event listener des filtres
   const filters = document.getElementById("navbar");
   filters.addEventListener("click", (e) => {
@@ -217,7 +217,7 @@ function closeTag() {
   });
 }
 
-function navbarInputListener() {
+export function navbarInputListener() {
   const navbarInput = document.querySelector("#search-navbar");
   navbarInput.addEventListener("input", (e) => {
     const value = e.target.value.trim();

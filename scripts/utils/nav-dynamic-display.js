@@ -4,6 +4,6 @@ export function recipeNumber() {
   const articles = gallery.querySelectorAll("article");
 
   const number = articles.length;
-  // sans s s'il n'y a aucune ou 1 recette
+  // au singulier s'il n'y a aucune ou 1 recette
   numberText.textContent = `${number} recette${number > 1 ? "s" : ""}`;
 }
