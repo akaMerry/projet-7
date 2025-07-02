@@ -49,7 +49,7 @@
           du quotidien, simples et délicieuses
         </p>
 
-        <div
+        <form
           class="search search-container flex flex-row items-center justify-between h-18 w-238.5 bg-white rounded-xl mt-8 p-3"
         >
           <input
@@ -75,7 +75,7 @@
               </div>
             </div>
           </button>
-        </div>
+        </form>
       </div>
     </header>
 
@@ -84,6 +84,7 @@
         <div class="flex items-center justify-between">
           <div class="search flex flex-col">
             <div id="recipe-search" class="flex flex-row">
+              <!-- menu ingrédients -->
               <div
                 class="recipe-search-ingredients group relative mr-18"
                 aria-expanded="false"
@@ -103,8 +104,8 @@
                   class="dropdown-menu hidden absolute top-full left-0 w-full z-20 justify-between rounded-b-xl bg-white shadow-md flex-col group-aria-[expanded=true]:flex"
                 >
                   <!-- recherche -->
-                  <div
-                    class="search-container dropdown-search-container flex flex-row items-center rounded-xs h-9 p-2 ml-4 mr-4 mb-4 bg-white outline-1 outline-light-grey"
+                  <form
+                    class="search search-container dropdown-search-container flex flex-row items-center rounded-xs h-9 p-2 ml-4 mr-4 mb-4 bg-white outline-1 outline-light-grey"
                   >
                     <input
                       type="text"
@@ -139,25 +140,17 @@
                         </div>
                       </div>
                     </button>
-                  </div>
-                  <!-- suggestions -->
-                  <div class="suggestions"></div>
+                  </form>
                   <!-- affichage des tags dans le menu -->
-                  <div class="actual-inputs"></div>
-                  <!-- historique -->
+                  <div class="actual-inputs tags"></div>
+                  <!-- suggestions -->
                   <div
-                    class="record flex flex-wrap text-sm/8 h-full max-h-52 overflow-y-scroll"
-                  >
-                    <p class="recipe-record flex w-full pl-4 pr-4">
-                      jus de citron <br />
-                      glaçons<br />
-                      tomate <br />poulet <br />poivron rouge <br />thon en
-                      miettes <br />vinaigrette
-                    </p>
-                  </div>
+                    class="suggestions flex-wrap grid col-span-full text-sm/8 h-full max-h-52 overflow-y-scroll"
+                  ></div>
                 </div>
               </div>
 
+              <!-- menu appareils -->
               <div
                 class="recipe-search-appliance group relative mr-18"
                 aria-expanded="false"
@@ -177,8 +170,8 @@
                   class="dropdown-menu hidden absolute top-full left-0 w-full z-20 justify-between rounded-b-xl bg-white shadow-md flex-col group-aria-[expanded=true]:flex"
                 >
                   <!-- recherche -->
-                  <div
-                    class="search-container dropdown-search-container flex flex-row items-center rounded-xs h-9 p-2 ml-4 mr-4 mb-4 bg-white outline-1 outline-light-grey"
+                  <form
+                    class="search search-container dropdown-search-container flex flex-row items-center rounded-xs h-9 p-2 ml-4 mr-4 mb-4 bg-white outline-1 outline-light-grey"
                   >
                     <input
                       type="text"
@@ -213,25 +206,17 @@
                         </div>
                       </div>
                     </button>
-                  </div>
-                  <!-- suggestions -->
-                  <div class="suggestions"></div>
+                  </form>
                   <!-- affichage des tags dans le menu -->
-                  <div class="actual-inputs"></div>
-                  <!-- historique -->
+                  <div class="actual-inputs tags"></div>
+                  <!-- suggestions -->
                   <div
-                    class="record flex flex-wrap text-sm/8 h-full max-h-52 overflow-y-scroll group"
-                  >
-                    <p class="recipe-record flex w-full pl-4 pr-4">
-                      jus de citron <br />
-                      glaçons<br />
-                      tomate <br />poulet <br />poivron rouge <br />thon en
-                      miettes <br />vinaigrette
-                    </p>
-                  </div>
+                    class="suggestions flex-wrap grid col-span-full text-sm/8 h-full max-h-52 overflow-y-scroll"
+                  ></div>
                 </div>
               </div>
 
+              <!-- menu ustensils -->
               <div
                 class="recipe-search-ustensils group relative mr-18"
                 aria-expanded="false"
@@ -251,8 +236,8 @@
                   class="dropdown-menu hidden absolute top-full left-0 w-full z-20 justify-between rounded-b-xl bg-white shadow-md flex-col group-aria-[expanded=true]:flex"
                 >
                   <!-- recherche -->
-                  <div
-                    class="search-container dropdown-search-container flex flex-row items-center rounded-xs h-9 p-2 ml-4 mr-4 mb-4 bg-white outline-1 outline-light-grey"
+                  <form
+                    class="search search-container dropdown-search-container flex flex-row items-center rounded-xs h-9 p-2 ml-4 mr-4 mb-4 bg-white outline-1 outline-light-grey"
                   >
                     <input
                       type="text"
@@ -287,22 +272,13 @@
                         </div>
                       </div>
                     </button>
-                  </div>
-                  <!-- suggestions -->
-                  <div class="suggestions"></div>
+                  </form>
                   <!-- affichage des tags dans le menu -->
-                  <div class="actual-inputs"></div>
-                  <!-- historique -->
+                  <div class="actual-inputs tags"></div>
+                  <!-- suggestions -->
                   <div
-                    class="record flex flex-wrap text-sm/8 h-full max-h-52 overflow-y-scroll"
-                  >
-                    <p class="recipe-record flex w-full pl-4 pr-4">
-                      jus de citron <br />
-                      glaçons<br />
-                      tomate <br />poulet <br />poivron rouge <br />thon en
-                      miettes <br />vinaigrette
-                    </p>
-                  </div>
+                    class="suggestions flex-wrap grid col-span-full text-sm/8 h-full max-h-52 overflow-y-scroll"
+                  ></div>
                 </div>
               </div>
             </div>
@@ -311,10 +287,11 @@
             <p class="recipe-number-text font-primary text-lg"></p>
           </div>
         </div>
-        <div class="recipe-filters mt-6 flex flex-row items-center">
+        <div class="recipe-filters tags mt-6 flex flex-row items-center">
           <!-- insertion des tags ici -->
         </div>
       </div>
+      <!-- absence de recette correspondante -->
       <div
         class="relative no-recipe-message hidden flex-col justify-center items-center mt-5 gap-12 z-10"
       >
@@ -335,7 +312,6 @@
         <div class="recipe-lightbox m-4"></div>
       </div>
     </main>
-    <script src="./scripts/pages/index.js" type="module"></script>
-    <script src="./scripts/utils/nav-dynamic-display.js" type="module"></script>
+    <script src="./src/pages/index.js" type="module"></script>
   </body>
 </html>

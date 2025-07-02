@@ -1,4 +1,4 @@
-const recipes = [
+export const recipes = [
   {
     id: 1,
     image: "Recette01.jpg",
@@ -1825,22 +1825,3 @@ const recipes = [
     ustensils: ["rouleau à patisserie", "fouet"],
   },
 ];
-
-export function recipesData() {
-  const mappedRecipes = recipes.map((recipe) => ({
-    id: recipe.id,
-    name: recipe.name,
-    picture: `/assets/recipes/${recipe.image}`,
-    time: recipe.time,
-    servings: recipe.servings,
-    description: recipe.description,
-    appliance: recipe.appliance,
-    ustensils: recipe.ustensils,
-    ingredients: recipe.ingredients.map((ingredient) => ({
-      ingredient: ingredient.ingredient,
-      quantity: ingredient.quantity,
-      unit: ingredient.unit,
-    })),
-  }));
-  return mappedRecipes;
-}

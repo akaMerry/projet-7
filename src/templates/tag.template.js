@@ -1,5 +1,5 @@
 export function tagTemplate() {
-  function tagDOM(value) {
+  function tagDOM(tagName) {
     // Déclaration des éléments
     const tag = document.createElement("div");
     const text = document.createElement("p");
@@ -11,7 +11,7 @@ export function tagTemplate() {
     tag.className =
       "filter flex mr-4 p-4 h-14 w-fit bg-yellow rounded-xl items-center";
     text.className = "filter-text flex text-sm";
-    text.textContent = `${value}`;
+    text.textContent = `${tagName}`;
     crossIcon.className =
       "icon icon-cross tag-cross-icon flex cursor-pointer items-center w-5 h-5 ml-3 relative";
     leftCross.className =

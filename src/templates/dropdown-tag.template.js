@@ -1,5 +1,5 @@
 export function dropdownTagTemplate() {
-  function dropdownTagDOM(value) {
+  function dropdownTagDOM(tagName) {
     // Déclaration des éléments
     const tag = document.createElement("div");
     const text = document.createElement("p");
@@ -12,7 +12,7 @@ export function dropdownTagTemplate() {
     tag.className =
       "filter flex p-4 h-9 mb-1 w-full bg-yellow items-center justify-between";
     text.className = "filter-text font-bold";
-    text.textContent = `${value}`;
+    text.textContent = `${tagName}`;
     crossIcon.className =
       "icon icon-cross tag-cross-icon flex cursor-pointer w-4 h-4 ml-3";
     cross.className =
